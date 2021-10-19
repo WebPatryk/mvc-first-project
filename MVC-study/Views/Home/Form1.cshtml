@@ -1,0 +1,44 @@
+﻿@model MVC_study.Models.FormModel
+@{
+    ViewData["Title"] = "Form1";
+
+    DateTime today = DateTime.Today;
+
+    string yourBirhday = Model.Date;
+
+    string[] subs = yourBirhday.Split('-');
+
+    int year = Convert.ToInt32(subs[0]);
+    int month = Convert.ToInt32(subs[1]);
+    int day = Convert.ToInt32(subs[2]);
+
+    DateTime next = new DateTime(year,month,day);
+
+    int numDays = (today - next).Days;
+
+
+    int currentYear = Convert.ToInt32(DateTime.Now.Year.ToString());
+    bool isLeapYear = false;
+
+    if (DateTime.IsLeapYear(year))
+    {
+        isLeapYear = true;
+        Console.WriteLine("Leap Year!");
+    }
+    Console.WriteLine(yourBirhday);
+
+}
+
+   
+<div class="text-left">
+    <h1 class="display-4">Dane z formularza:</h1>
+    @Html.DisplayNameFor(model => model.Name):          @Html.DisplayFor(model => model.Name)
+    <br />
+    @Html.DisplayNameFor(model => model.Date):   @Html.DisplayFor(model => numDays)
+    <br />
+    <p>Czy rok twoich urodzin był rokiem przestępnym? <b> @(isLeapYear?"Tak":"Nie") </b> </p>
+</div>
+<br />
+<a href="/form1.html">Powrót do Form1 (HTML)</a>
+<br />
+<a asp-action="Form2">Powrót do Form2 (Razor)</a>
