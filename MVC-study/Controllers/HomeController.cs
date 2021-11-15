@@ -2,10 +2,7 @@
 using Microsoft.Extensions.Logging;
 using MVC_study.Models;
 using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace MVC_study.Controllers
 {
@@ -37,6 +34,26 @@ namespace MVC_study.Controllers
         [HttpPost]
         public IActionResult Form1(FormModel model)
         {
+            DateTime today = DateTime.Today;
+
+            string yourBirhday = model.Date;
+            DateTime compiledDate = Convert.ToDateTime(yourBirhday);
+
+            DateTime birthdayDays = compiledDate;
+
+            int numDays = (today - birthdayDays).Days;
+        
+
+            bool isLeapYear = false;
+
+            if (DateTime.IsLeapYear(compiledDate.Year))
+            {
+                isLeapYear = true;
+            }
+
+            ViewBag.LeftDays = numDays;
+            ViewBag.leapYear = isLeapYear ? "Tak" : "Nie" ;
+
             return View(model);
         }
     }

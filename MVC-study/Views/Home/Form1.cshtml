@@ -2,41 +2,19 @@
 @{
     ViewData["Title"] = "Form1";
 
-    DateTime today = DateTime.Today;
-
-    string yourBirhday = Model.Date;
-
-    string[] subs = yourBirhday.Split('-');
-
-    int year = Convert.ToInt32(subs[0]);
-    int month = Convert.ToInt32(subs[1]);
-    int day = Convert.ToInt32(subs[2]);
-
-    DateTime next = new DateTime(year,month,day);
-
-    int numDays = (today - next).Days;
-
-
-    int currentYear = Convert.ToInt32(DateTime.Now.Year.ToString());
-    bool isLeapYear = false;
-
-    if (DateTime.IsLeapYear(year))
-    {
-        isLeapYear = true;
-        Console.WriteLine("Leap Year!");
-    }
-    Console.WriteLine(yourBirhday);
-
 }
 
-   
+
 <div class="text-left">
     <h1 class="display-4">Dane z formularza:</h1>
-    @Html.DisplayNameFor(model => model.Name):          @Html.DisplayFor(model => model.Name)
+    @Html.DisplayNameFor(model => model.Name):         <b> @Html.DisplayFor(model => model.Name)</b>
     <br />
-    @Html.DisplayNameFor(model => model.Date):   @Html.DisplayFor(model => numDays)
+    @Html.DisplayNameFor(model => model.Date):   <b>@Html.DisplayFor(model => model.Date)</b>
     <br />
-    <p>Czy rok twoich urodzin był rokiem przestępnym? <b> @(isLeapYear?"Tak":"Nie") </b> </p>
+    <p>Ile dni upłynęło od twoich urodzin?:  <b>@ViewBag.LeftDays</b></p>
+    <br />
+    <p>Czy rok twoich urodzin był rokiem przestępnym? <b> @ViewBag.leapYear </b> </p>
+
 </div>
 <br />
 <a href="/form1.html">Powrót do Form1 (HTML)</a>

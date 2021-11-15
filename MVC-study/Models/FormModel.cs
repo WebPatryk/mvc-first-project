@@ -11,7 +11,9 @@ namespace MVC_study.Models
     {
         [Display(Name = "Twoje imię")]
         public string Name { get; set; }
+
         [Display(Name = "Data urodzenia")]
+        [DisplayFormat(ApplyFormatInEditMode =true, DataFormatString = "{0:yyyy-MM-dd}")]
         public string Date { get; set; }
     }
 }
